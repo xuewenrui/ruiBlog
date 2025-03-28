@@ -1,0 +1,223 @@
+<header class="site-header">
+
+    <!-- 导航栏和语言切换器容器 -->
+    <div class="nav-container">
+        <!-- 导航栏 -->
+        <nav class="nav-bar">
+            <ul>
+                <!-- 获取当前语言 -->
+                <% var lang = currentLang() || config.default_language || 'zh'; %>
+
+                <!-- 解析每个菜单项 -->
+                <% var menuI18n = {
+                    home: __('menu.home'),
+                    members: __('menu.members'),
+                    research: __('menu.research'),
+                    publications: __('menu.publications'),
+                    tools: __('menu.tools'),
+                    photo: __('menu.photo')
+                }; %>
+
+                <!-- 菜单链接的对应地址 -->
+                <% var menuLinks = {
+                    home: `/${lang}/`,
+                    members: `/${lang}/members/`,
+                    research: `/${lang}/research/`,
+                    publications: `/${lang}/publications/`,
+                    tools: `/${lang}/tools/`,
+                    photo: `/${lang}/photo/`
+                }; %>
+
+                <% Object.keys(menuLinks).forEach(function(key) { %>
+                    <li>
+                        <a href="<%= '/lab' + menuLinks[key] %>">
+                            <%= menuI18n[key] || key %>
+                        </a>
+                    </li>
+                <% }); %>
+            </ul>
+
+            <!-- 中英文切换滑动栏 -->
+            <div class="language-switcher">
+                <div class="switch">
+                    <div class="slider" data-lang="zh" onclick="switchLanguage('zh')">中文</div>
+                    <div class="slider" data-lang="en" onclick="switchLanguage('en')">English</div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Banner 图片 -->
+    <div class="banner">
+        <img src="<%= theme.banner_url %>" alt="实验室Banner">
+    </div>
+
+ <!--   <script>
+        // 设置cookie
+        function setCookie(name, value) {
+            document.cookie = name + "=" + (value || "") + "; path=/";
+        }
+
+        // 获取cookie
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // 切换语言并设置cookie
+        function switchLanguage(lang) {
+            var currentPath = window.location.pathname;
+            var root = '/lab'; // 根路径
+
+            var newPath = currentPath.replace(/^\/lab\/(en|zh)/, '').replace(/^\/lab/, '');
+
+            if (newPath.includes('zh') || newPath.includes('en')) {
+                newPath = newPath.replace(/\/zh\//, `/${lang}/`).replace(/\/en\//, `/${lang}/`);
+            }
+
+            if (lang === 'zh') {
+                newPath = '/zh' + newPath;
+            } else {
+                newPath = '/en' + newPath;
+            }
+
+            setCookie("lang", lang); // 存储语言设置，默认会话cookie
+
+            if (newPath === '/lab/') {
+                window.location.href = root + `/${lang}/`;
+            } else {
+                window.location.href = root + newPath;
+            }
+        }
+
+        // 获取当前语言并从cookie中读取
+        function currentLang() {
+            var lang = getCookie('lang') || '<%= config.default_language || "zh" %>';
+            if (!lang) {
+                lang = '<%= config.default_language || "zh" %>';
+                setCookie("lang", lang); // 存储语言
+            }
+            return lang;
+        }
+
+        // 语言切换器的样式
+        document.addEventListener('DOMContentLoaded', function () {
+            var lang = currentLang();
+            document.querySelectorAll('.switch .slider').forEach(function (slider) {
+                if (slider.getAttribute('data-lang') === lang) {
+                    slider.classList.add('active'); // 选中的语言设置样式
+                } else {
+                    slider.classList.remove('active');
+                }
+            });
+
+            // 根据页面路径设置导航栏的活动状态
+            var currentPath = window.location.pathname;
+
+            // 去除 '/lab/' 之前的部分
+            var pathWithoutLab = currentPath.replace(/^\/lab/, '');
+
+            // 定义特殊情况的路径
+            var specialCases = ['/', `/${lang}/`];
+
+            // 根据路径判断活动状态
+            var isHomePage = specialCases.includes(pathWithoutLab);
+
+            document.querySelectorAll('.nav-bar a').forEach(function (link) {
+                var linkHref = link.getAttribute('href').replace(/^\/lab/, '');
+                if (linkHref === pathWithoutLab || (isHomePage && linkHref === `/${lang}/`)) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>-->
+    <script>
+        // 设置 sessionStorage
+        function setSessionStorage(name, value) {
+            sessionStorage.setItem(name, value);
+        }
+
+        // 获取 sessionStorage
+        function getSessionStorage(name) {
+            return sessionStorage.getItem(name);
+        }
+
+        // 切换语言并设置 sessionStorage
+        function switchLanguage(lang) {
+            var currentPath = window.location.pathname;
+            var root = '/lab'; // 根路径
+
+            var newPath = currentPath.replace(/^\/lab\/(en|zh)/, '').replace(/^\/lab/, '');
+
+            if (newPath.includes('zh') || newPath.includes('en')) {
+                newPath = newPath.replace(/\/zh\//, `/${lang}/`).replace(/\/en\//, `/${lang}/`);
+            }
+
+            if (lang === 'zh') {
+                newPath = '/zh' + newPath;
+            } else {
+                newPath = '/en' + newPath;
+            }
+
+            setSessionStorage("lang", lang); // 存储语言设置
+
+            if (newPath === '/lab/') {
+                window.location.href = root + `/${lang}/`;
+            } else {
+                window.location.href = root + newPath;
+            }
+        }
+
+        // 获取当前语言并从 sessionStorage 中读取
+        function currentLang() {
+            var lang = getSessionStorage('lang') || '<%= config.default_language || "zh" %>';
+            if (!lang) {
+                lang = '<%= config.default_language || "zh" %>';
+                setSessionStorage("lang", lang); // 存储语言
+            }
+            return lang;
+        }
+
+        // 语言切换器的样式
+        document.addEventListener('DOMContentLoaded', function () {
+            var lang = currentLang();
+            document.querySelectorAll('.switch .slider').forEach(function (slider) {
+                if (slider.getAttribute('data-lang') === lang) {
+                    slider.classList.add('active'); // 选中的语言设置样式
+                } else {
+                    slider.classList.remove('active');
+                }
+            });
+
+            // 根据页面路径设置导航栏的活动状态
+            var currentPath = window.location.pathname;
+
+            // 去除 '/lab/' 之前的部分
+            var pathWithoutLab = currentPath.replace(/^\/lab/, '');
+
+            // 定义特殊情况的路径
+            var specialCases = ['/', `/${lang}/`];
+
+            // 根据路径判断活动状态
+            var isHomePage = specialCases.includes(pathWithoutLab);
+
+            document.querySelectorAll('.nav-bar a').forEach(function (link) {
+                var linkHref = link.getAttribute('href').replace(/^\/lab/, '');
+                if (linkHref === pathWithoutLab || (isHomePage && linkHref === `/${lang}/`)) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+
+</header>
