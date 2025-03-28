@@ -1,60 +1,44 @@
-<%
-// 获取当前页面的语言 (lang) 值，默认为 'zh'
-const currentLang = page.lang || 'zh';
-
-// 获取文章，按日期排序，过滤当前语言的文章并显示前5条
-const currentPostsToShow = site.posts
-        .filter(post => post.lang === currentLang)  // 过滤当前语言的文章
-const postsToShow = site.posts
-        .filter(post => post.lang === currentLang)  // 过滤当前语言的文章
-        .reduce((acc, post) => {
-            // 按日期插入文章，保持数组长度为 5
-            if (acc.length < 5) {
-                acc.push(post);
-            } else {
-                const minDatePost = acc.reduce((min, p) => new Date(p.date) < new Date(min.date) ? p : min);
-                if (new Date(post.date) > new Date(minDatePost.date)) {
-                    acc[acc.indexOf(minDatePost)] = post; // 替换最旧的文章
-                }
-            }
-            return acc;
-        }, [])
-        .sort((a, b) => new Date(b.date) - new Date(a.date)); // 排序
-// console.log("=========================================================")
-// console.table(currentPostsToShow.map(post => ({title: post.title, sor: post.sor})));
-// console.table(postsToShow.map(post => ({title: post.title, sor: post.sor})));
-// console.log(postsToShow.filter(post => post.sor === 3))
-%>
-
-<div class="post-list">
-    <% if (postsToShow.length > 0) { %>
-        <% postsToShow.forEach(function(post) { %>
-            <div class="post-item" style="margin-bottom: 20px;">
-                <h3>
-                    <a href="<%= post.permalink %>"
-                       onclick="handleLinkClick(event, '<%= post.permalink %>')"><%= post.title %></a>
-                </h3>
-                <p><%= post.excerpt %></p>
-                                <p class="post-date" style="margin-left: -10px;"><%= post.date.format('YYYY-MM-DD') %></p>
-<!--                <p class="post-date" style="margin-left: -10px;"><%= post.date %></p>-->
-                <a href="<%= post.permalink %>" class="post-detail-link"
-                   onclick="handleLinkClick(event, '<%= post.permalink %>')"><%= __('home.detail') %></a>
-            </div>
-        <% }); %>
-    <% } else { %>
-        <p><%= __('home.np') %><</p>
-    <% } %>
+<!-- 欢迎语 -->
+<div class="welcome-message" style="text-align: center; margin-top: 20px;">
+    <h2>欢迎来到 Rui 的博客！</h2>
+    <p>这里记录了我对技术、生活和学习的点滴思考。希望你能在这里找到有价值的内容！</p>
 </div>
-<!--
-<script>
-    function getCookie(name) {
-        let value = "; " + document.cookie;
-        let parts = value.split("; " + name + "=");
-        if (parts.length === 2) return parts.pop().split(";").shift();
-    }
 
-    /*!点击能够跳转到相应的文章页面*/
-    function handleLinkClick(event, url) {
-        event.preventDefault(); // 阻止默认链接行为
+<!-- 最新文章 -->
+<div class="latest-posts" style="margin-top: 40px;">
+    <h3>最新文章</h3>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <% site.posts.sort((a, b) => new Date(b.date) - new Date(a.date)) // 按日期排序 %>
+        <% const postsToShow = site.posts.slice(0, 5) // 只取前5篇最新文章 %>
+        <% postsToShow.forEach(function(post) { %>
+            <li style="margin-bottom: 20px;">
+                <a href="<%= post.permalink %>" style="font-size: 1.2em; color: #007bff; text-decoration: none;">
+                    <%= post.title %>
+                </a>
+                <p style="color: #555; font-size: 0.9em; margin-top: 5px;"><%= post.excerpt %></p>
+            </li>
+        <% }); %>
+    </ul>
+</div>
 
-        // 获取当前语言
+<!-- 文章分类 -->
+<div class="categories" style="margin-top: 40px;">
+    <h3>文章分类</h3>
+    <ul>
+        <li><a href="/category/技术">技术</a></li>
+        <li><a href="/category/生活">生活</a></li>
+        <li><a href="/category/学习">学习</a></li>
+    </ul>
+</div>
+
+<!-- 搜索框 -->
+<div class="search-bar" style="text-align: center; margin-top: 40px;">
+    <input type="text" placeholder="搜索文章..." style="padding: 10px; width: 60%; border-radius: 5px;">
+    <button style="padding: 10px 20px; margin-left: 10px; border-radius: 5px; background-color: #007bff; color: white;">搜索</button>
+</div>
+
+<!-- 个人简介 -->
+<div class="about-me" style="margin-top: 40px; text-align: center;">
+    <h3>关于我</h3>
+    <p>我是 yuan rui，一个热衷于技术的学习者。我的博客记录了我对编程、技术、生活的思考。</p>
+</div>

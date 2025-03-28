@@ -1,8 +1,57 @@
 <footer class="site-footer">
-    <div class="footer-content" style="max-width: 1200px; margin: 0 auto; text-align: center; padding: 20px;">
-        <!-- ?页脚内容 -->
-        <p><%= __('footer.description1') %></p>
-        <p><%= __('footer.description2') %></p>
+    <div class="footer-content">
+        <p>© 2025 Rui's Blog. All Rights Reserved.</p>
+        <p>All content is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a>.</p>
+        <p>Contact: <a href="mailto:your@email.com">2502099390@qq.com</a></p>
     </div>
 </footer>
 
+<style>
+    /* 页脚整体样式 */
+    .site-footer {
+        background: #007bff; /* 蓝色背景 */
+        color: white; /* 文字颜色 */
+        padding: 20px 10px;
+        text-align: center;
+    }
+
+    /* 页脚内容 */
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 10px;
+    }
+
+    /* 链接样式 */
+    .site-footer a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .site-footer a:hover {
+        text-decoration: underline;
+    }
+
+    /* 适配手机端 */
+    @media (max-width: 768px) {
+        .footer-content {
+            padding: 15px;  /* 调整 padding */
+        }
+
+        /* 减小字体大小 */
+        .site-footer p {
+            font-size: 14px;
+        }
+
+        /* 链接排版改为竖排 */
+        .footer-content p {
+            margin-bottom: 10px;
+        }
+
+        /* 适当增加链接之间的间距 */
+        .footer-content a {
+            margin-right: 5px;
+        }
+    }
+</style>

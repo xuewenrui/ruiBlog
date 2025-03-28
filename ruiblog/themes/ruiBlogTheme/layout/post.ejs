@@ -1,0 +1,105 @@
+<article class="post">
+    <header class="post-header">
+        <div class="post-title">
+            <h3><%= page.title %></h3>
+        </div>
+        <% if (page.date && page.showDate !== false) { %>
+            <%
+                var date = new Date(page.date);
+                var year = date.getFullYear(); // 获取年份
+                var month = ('0' + (date.getMonth() + 1)).slice(-2); // 获取月份，确保两位数
+                var day = ('0' + date.getDate()).slice(-2); // 获取日期，确保两位数
+                var dateString = year + '-' + month + '-' + day; // 拼接为 YYYY-MM-DD 格式
+            %>
+            <div class="post-date">
+                <p><%= dateString %></p>
+            </div>
+        <% } %>
+    </header>
+    <div class="post-content">
+        <%- page.content %>
+    </div>
+</article>
+
+<style>
+    .post {
+        border: 2px solid #ce0b0b;
+        border-radius: 5px;
+        margin: 3px auto;
+        max-width: 1050px;
+        min-height: 450px;
+        background-color: #f9f9f9;
+        position: relative; /* 添加以确保 post-date 绝对定位 */
+        padding-top: 0; /* 确保顶部边距与标题对齐 */
+    }
+
+    .post-header {
+        margin: 0; /* 移除 header 外边距 */
+    }
+
+    .post-title {
+        background-color: #ce0b0b; /* 蓝色背景 */
+        height: 22px;
+        color: white;
+        padding: 10px; /* 内边距，确保文本不会紧贴边缘 */
+        margin: 0; /* 移除外边距 */
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        position: relative;
+        z-index: 1; /* 确保标题在内容之上 */
+        box-shadow: 0 0 0 2px #ce0b0b; /* 确保左边框和上边框的颜色 */
+        margin: -2px 0 0 -2px; /* 确保背景色紧挨左边框和上边框 */
+    }
+
+    .post-title h3 {
+        margin: 0;
+        font-weight: bold; /* 加粗字体 */
+    }
+
+    .post-date {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        font-size: 0.9em;
+        color: #000000;
+        padding: 5px 10px;
+        border-radius: 3px;
+    }
+    .post-content {
+        padding: 20px;
+        line-height: 1.6;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .post {
+            max-width: 100%; /* 占据手机屏幕的宽度 */
+            min-height: auto; /* 移除固定高度 */
+            margin: 3px 5px; /* 减少边距 */
+        }
+
+        .post-title {
+            font-size: 16px; /* 缩小标题字体 */
+            padding: 8px; /* 调整内边距 */
+            height: auto; /* 确保标题高度自适应 */
+            box-shadow: none; /* 去除不必要的阴影 */
+        }
+
+        .post-title h3 {
+            font-size: 1.2em; /* 缩小标题字体 */
+        }
+
+        .post-content {
+            padding: 10px; /* 减少内容的内边距 */
+            font-size: 1em; /* 调整内容字体大小 */
+            line-height: 1.4; /* 减小行高 */
+        }
+
+        .post-date {
+            font-size: 0.8em; /* 缩小日期字体 */
+            padding: 3px 5px; /* 缩小日期的内边距 */
+            right: 5px; /* 调整日期位置 */
+            bottom: 5px;
+        }
+    }
+
+</style>

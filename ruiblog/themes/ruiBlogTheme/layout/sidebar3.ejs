@@ -1,0 +1,215 @@
+<%
+// 获取当前页面的语言 (lang) 值，默认为 'zh'
+const currentLang = page.lang || 'zh';
+// 获取文章，过滤当前语言的文章
+let posts = site.posts.filter(post => post.lang === currentLang);
+
+// 按日期降序排列
+posts = posts.reduce((acc, post) => {
+    // 查找插入位置
+    let index = acc.findIndex(item => new Date(item.date) < new Date(post.date));
+    if (index === -1) {
+        acc.push(post); // 如果没有找到合适的位置，直接添加到数组末尾
+    } else {
+        acc.splice(index, 0, post); // 在找到的位置插入文章
+    }
+    return acc;
+}, []);
+%>
+<div class="sidebar3">
+    <h3><i class="fas fa-newspaper"></i> <%= __('notice.title') %></h3>
+    <% if (posts && posts.length) { %>
+        <ul class="news-list">
+            <% posts.slice(0, 5).forEach(function(post) { %>
+                <li class="news-item">
+                    <a href="<%= post.permalink %>" onclick="handleLinkClick(event, '<%= post.permalink %>')"
+                       title="<%= post.title %>">
+                        <span class="news-title"><%= post.title.length > 10 ? post.title.substring(0, 10) + '...' : post.title %></span>
+                        <span class="news-date"><%= post.date.format('YYYY-MM-DD') %></span>
+                    </a>
+                </li>
+            <% }) %>
+            <% if (posts.length > 5) { %>
+                <div id="more-content" class="more-content hidden">
+                    <% posts.slice(5).forEach(function(post) { %>
+                        <li class="news-item">
+                            <a href="<%= post.permalink %>" onclick="handleLinkClick(event, '<%= post.permalink %>')"
+                               title="<%= post.title %>">
+                                <span class="news-title"><%= post.title.length > 10 ? post.title.substring(0, 10) + '...' : post.title %></span>
+                                <span class="news-date"><%= post.date.format('YYYY-MM-DD') %></span>
+                            </a>
+                        </li>
+                    <% }) %>
+                </div>
+                <div class="pagination">
+                    <span class="total-count"><%= __('notice.total') + posts.length + __('notice.item') %></span>
+                    <a href="#" class="more-link" onclick="toggleContent(event)"><%= __('notice.more') %></a>
+                </div>
+            <% } %>
+        </ul>
+    <% } else { %>
+        <p><%= __('notice.none') %></p>
+    <% } %>
+</div>
+<style>
+    .sidebar3 {
+        width: 250px;
+        min-height: 120px;
+        border: 2px solid #ce0b0b;
+        border-radius: 5px;
+        background-color: #f9f9f9; /* 背景色 */
+    }
+
+    .sidebar3 h3 {
+        background-color: #ce0b0b;
+        color: white;
+        padding: 10px;
+        margin: 0;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+
+    .news-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .news-item {
+        border-bottom: 1px solid #ddd;
+        padding: 10px 10px;
+        display: flex;
+        justify-content: space-between; /* 标题和日期保持同一行 */
+        align-items: center;
+    }
+
+    .news-title {
+        font-size: 14px;
+        color: #000000;
+        margin-right: 10px; /* 控制标题与日期的间距 */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        transition: color 0.3s ease;
+    }
+
+    .news-date {
+        font-size: 12px;
+        color: #666666;
+    }
+
+    .news-item a {
+        text-decoration: none;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .news-item a:hover .news-title {
+        color: #0073e6; /* 鼠标悬停时标题字体变为蓝色 */
+    }
+
+    .pagination {
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+        color: #000000;
+    }
+
+    .pagination span {
+        display: block;
+    }
+
+    .more-content.hidden {
+        display: none;
+    }
+
+    .more-link {
+        display: block;
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+        color: #007bff;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .more-link:hover {
+        text-decoration: underline;
+    }
+
+    /* 手机端样式调整 */
+    @media only screen and (max-width: 768px) {
+        .sidebar3 {
+            width: 100%; /* 在手机端占满宽度 */
+            margin-bottom: 20px; /* 增加底部间距 */
+        }
+
+        .news-title {
+            font-size: 1em; /* 调整标题的字体大小 */
+        }
+
+        .news-date {
+            font-size: 0.9em; /* 调整日期的字体大小 */
+        }
+
+        .pagination {
+            font-size: 1em; /* 调整分页按钮的字体大小 */
+        }
+
+        .more-link {
+            font-size: 1em; /* 调整 "更多" 链接的字体大小 */
+        }
+    }
+</style>
+<!--
+<script>
+    function toggleContent(event) {
+        event.preventDefault();
+        const moreContent = document.getElementById('more-content');
+        if (moreContent) {
+            moreContent.classList.toggle('hidden');
+            event.target.textContent = moreContent.classList.contains('hidden') ? '<%= __('notice.more') %>' : '<%= __('notice.less') %>';
+        }
+    }
+
+    function getCookie(name) {
+        let value = "; " + document.cookie;
+        let parts = value.split("; " + name + "=");
+        if (parts.length === 2) return parts.pop().split(";").shift();
+    }
+
+    function handleLinkClick(event, url) {
+        event.preventDefault();
+        const lang = getCookie('lang') || 'zh';
+        const rootPath = '/lab/';
+        const newUrl = url.replace(/\/zh\//, `/${lang}/`).replace(/\/en\//, `/${lang}/`);
+        window.history.pushState(null, null, rootPath);
+        window.location.href = newUrl;
+    }
+
+</script>-->
+<script>
+    function toggleContent(event) {
+        event.preventDefault();
+        const moreContent = document.getElementById('more-content');
+        if (moreContent) {
+            moreContent.classList.toggle('hidden');
+            event.target.textContent = moreContent.classList.contains('hidden') ? '<%= __('notice.more') %>' : '<%= __('notice.less') %>';
+        }
+    }
+
+    // 获取语言设置
+    function getSessionLanguage() {
+        return sessionStorage.getItem('lang') || 'zh'; // 默认使用 'zh'
+    }
+
+    function handleLinkClick(event, url) {
+        event.preventDefault();
+        const lang = getSessionLanguage();
+        const rootPath = '/lab/';
+        const newUrl = url.replace(/\/zh\//, `/${lang}/`).replace(/\/en\//, `/${lang}/`);
+        window.history.pushState(null, null, rootPath);
+        window.location.href = newUrl;
+    }
+</script>
