@@ -1,6 +1,7 @@
 ---
 title: Linux 服务器常用命令
 category: Linux
+index_img: /img/gpu.png
 ---
 # Linux 服务器常用命令
 
