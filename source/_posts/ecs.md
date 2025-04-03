@@ -3,13 +3,13 @@ title: 部署 Flask 和 React 网站到阿里云 ECS
 date: 2025-04-02 10:00:00
 tags: [部署, Flask, React, 阿里云]
 categories: [教程]
-index_img: /img/index/ecs.png
+index_img: /img/deploy/ecs.png
 banner_img: /img/deploy/banner.png
 ---
 
 # 阿里云 ECS 部署 Flask + React 全栈指南
 
-![Deployment Architecture](https://example.com/deploy-arch.png)  
+![Deployment Architecture](/img/deploy/deploy.png)  
 *(示意图：前后端分离架构部署流程)*
 
 ## 一、服务器初始化配置
