@@ -1,7 +1,8 @@
 ---
 title: Linux 服务器常用命令
 category: Linux
-index_img: /img/gpu.png
+index_img: /img/linux/gpu.png
+banner_img: /img/linux/post_banner.png
 ---
 # Linux 服务器常用命令
 
