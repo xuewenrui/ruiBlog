@@ -19,23 +19,21 @@
   <meta name="author" content="Yuan Rui">
   <meta name="keywords" content="">
   
-    <meta name="description" content="🧱 一、布局相关  display（布局模式）block：块级元素（独占一行）  inline：行内元素 inline-block：既能设置宽高又不换行 flex：弹性盒子（常用于布局） grid：网格布局（高级）  position（定位）static（默认）  relative（相对定位） absolute（绝对定位） fixed（固定在屏幕上） sticky（粘性定位，适合吸顶效果）  f">
+    <meta name="description" content="React 常用 Hooks 详解React Hooks 是 React 16.8 引入的一种机制，使我们可以在函数组件中使用状态和其他 React 特性。以下是一些常用 Hooks 的详细说明：  1. useState作用：声明组件中的状态变量。适用场景：计数器、表单值、开关状态等。 123456789101112import &#123; useState &#125; from &amp;#x27">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端开发常用技术">
-<meta property="og:url" content="https://xuewenrui.github.io/ruiBlog/2025/04/15/web/index.html">
+<meta property="og:title" content="ruiBlog">
+<meta property="og:url" content="https://xuewenrui.github.io/ruiBlog/2025/04/24/react_hooks_summary/index.html">
 <meta property="og:site_name" content="ruiBlog">
-<meta property="og:description" content="🧱 一、布局相关  display（布局模式）block：块级元素（独占一行）  inline：行内元素 inline-block：既能设置宽高又不换行 flex：弹性盒子（常用于布局） grid：网格布局（高级）  position（定位）static（默认）  relative（相对定位） absolute（绝对定位） fixed（固定在屏幕上） sticky（粘性定位，适合吸顶效果）  f">
+<meta property="og:description" content="React 常用 Hooks 详解React Hooks 是 React 16.8 引入的一种机制，使我们可以在函数组件中使用状态和其他 React 特性。以下是一些常用 Hooks 的详细说明：  1. useState作用：声明组件中的状态变量。适用场景：计数器、表单值、开关状态等。 123456789101112import &#123; useState &#125; from &amp;#x27">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-15T07:21:38.365Z">
-<meta property="article:modified_time" content="2025-04-15T07:23:00.056Z">
+<meta property="article:published_time" content="2025-04-24T02:14:47.012Z">
+<meta property="article:modified_time" content="2025-04-24T02:14:13.507Z">
 <meta property="article:author" content="Yuan Rui">
-<meta property="article:tag" content="前端">
-<meta property="article:tag" content="常用技术">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>前端开发常用技术 - ruiBlog</title>
+  <title>ruiBlog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="前端开发常用技术"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -224,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-04-15 15:21" pubdate>
-          2025年4月15日 下午
+        <time datetime="2025-04-24 10:14" pubdate>
+          2025年4月24日 上午
         </time>
       </span>
     
@@ -236,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          432 字
+          642 字
         
       </span>
     
@@ -247,7 +245,7 @@
         
         
         
-          4 分钟
+          6 分钟
         
       </span>
     
@@ -284,58 +282,54 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">前端开发常用技术</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                <p>🧱 一、布局相关</p>
-<ol>
-<li>display（布局模式）<br>block：块级元素（独占一行）</li>
-</ol>
-<p>inline：行内元素</p>
-<p>inline-block：既能设置宽高又不换行</p>
-<p>flex：弹性盒子（常用于布局）</p>
-<p>grid：网格布局（高级）</p>
-<ol start="2">
-<li>position（定位）<br>static（默认）</li>
-</ol>
-<p>relative（相对定位）</p>
-<p>absolute（绝对定位）</p>
-<p>fixed（固定在屏幕上）</p>
-<p>sticky（粘性定位，适合吸顶效果）</p>
-<ol start="3">
-<li><p>float（浮动，已较少用）<br>left、right、none</p>
-</li>
-<li><p>z-index（层级）<br>控制元素的叠放顺序，数字越大越靠上</p>
-</li>
-</ol>
-<p>📏 二、尺寸与盒模型</p>
-<ol>
-<li>width &#x2F; height &#x2F; max-width &#x2F; min-height 等</li>
-<li>margin（外边距） &amp; padding（内边距）<br>css<br>复制<br>编辑<br>margin: 10px; &#x2F;* 四个方向一样 <em>&#x2F;<br>margin: 10px 20px; &#x2F;</em> 上下10px，左右20px *&#x2F;</li>
-<li>box-sizing<br>content-box：默认，padding 不算进 width</li>
-</ol>
-<p>border-box：推荐用，padding 和 border 都包含在 width 里</p>
-<p>🎨 三、字体与文本样式<br>font-size：字体大小</p>
-<p>font-weight：字体粗细（bold &#x2F; 400 &#x2F; 700）</p>
-<p>color：字体颜色</p>
-<p>text-align：对齐方式（left, center, right）</p>
-<p>line-height：行高</p>
-<p>letter-spacing：字间距</p>
-<p>text-decoration：下划线等（underline, none）</p>
-<p>🎨 四、背景与边框<br>background-color：背景色</p>
-<p>background-image：背景图</p>
-<p>background-size：背景图尺寸（cover, contain）</p>
-<p>border：边框（如：1px solid #ccc）</p>
-<p>border-radius：圆角（圆形元素用 50%）</p>
-<p>box-shadow：阴影</p>
-<p>🖱️ 五、交互样式</p>
-<ol>
-<li>鼠标样式<br>css<br>复制<br>编辑<br>cursor: pointer; &#x2F;* 像按钮一样的手型 *&#x2F;</li>
-<li>过渡动画<br>css<br>复制<br>编辑<br>transition: all 0.3s ease;</li>
-<li>伪类（常用于交互）<br>css<br>复制<br>编辑<br>a:hover { color: red; }   &#x2F;* 鼠标悬停 <em>&#x2F;<br>input:focus { border: blue; } &#x2F;</em> 获得焦点时 <em>&#x2F;<br>🧩 六、Flex 弹性布局（常用）<br>css<br>复制<br>编辑<br>display: flex;<br>justify-content: center;    &#x2F;</em> 横向居中 <em>&#x2F;<br>align-items: center;        &#x2F;</em> 纵向居中 <em>&#x2F;<br>flex-direction: column;     &#x2F;</em> 垂直排列 <em>&#x2F;<br>gap: 10px;                  &#x2F;</em> 子元素间距 *&#x2F;<br>📱 七、响应式相关<br>@media 媒体查询（响应式设计）<br>css<br>复制<br>编辑<br>@media (max-width: 768px) {<br>.box {<br>display: block;<br>}<br>}</li>
-</ol>
+                <h1 id="React-常用-Hooks-详解"><a href="#React-常用-Hooks-详解" class="headerlink" title="React 常用 Hooks 详解"></a>React 常用 Hooks 详解</h1><p>React Hooks 是 React 16.8 引入的一种机制，使我们可以在函数组件中使用状态和其他 React 特性。以下是一些常用 Hooks 的详细说明：</p>
+<hr>
+<h2 id="1-useState"><a href="#1-useState" class="headerlink" title="1. useState"></a>1. <code>useState</code></h2><p><strong>作用</strong>：声明组件中的状态变量。<br><strong>适用场景</strong>：计数器、表单值、开关状态等。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Counter</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [count, setCount] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>当前计数：&#123;count&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> setCount(count + 1)&#125;&gt;增加<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-useEffect"><a href="#2-useEffect" class="headerlink" title="2. useEffect"></a>2. <code>useEffect</code></h2><p><strong>作用</strong>：在组件生命周期内执行副作用操作。<br><strong>适用场景</strong>：请求数据、事件监听、定时器等。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; useEffect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;<br><br><span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;组件挂载&quot;</span>);<br><br>  <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;组件卸载&quot;</span>);<br>  &#125;;<br>&#125;, []);  <span class="hljs-comment">// 空依赖数组表示只执行一次（挂载和卸载）</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-useContext"><a href="#3-useContext" class="headerlink" title="3. useContext"></a>3. <code>useContext</code></h2><p><strong>作用</strong>：访问 Context 中的共享值。<br><strong>适用场景</strong>：跨组件传递数据，如主题、用户信息。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title class_">ThemeContext</span> = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">createContext</span>(<span class="hljs-string">&#x27;light&#x27;</span>);<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ThemeContext.Provider</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;dark&quot;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Toolbar</span> /&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">ThemeContext.Provider</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Toolbar</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> theme = <span class="hljs-title function_">useContext</span>(<span class="hljs-title class_">ThemeContext</span>);<br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>当前主题：&#123;theme&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-useRef"><a href="#4-useRef" class="headerlink" title="4. useRef"></a>4. <code>useRef</code></h2><p><strong>作用</strong>：访问 DOM 或保存一个可变引用值。<br><strong>适用场景</strong>：保存定时器 ID、避免重复渲染。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> inputRef = <span class="hljs-title function_">useRef</span>(<span class="hljs-literal">null</span>);<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">focusInput</span>(<span class="hljs-params"></span>) &#123;<br>  inputRef.<span class="hljs-property">current</span>.<span class="hljs-title function_">focus</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-useMemo"><a href="#5-useMemo" class="headerlink" title="5. useMemo"></a>5. <code>useMemo</code></h2><p><strong>作用</strong>：缓存计算值，提高性能。<br><strong>适用场景</strong>：性能敏感的复杂计算。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> expensiveValue = <span class="hljs-title function_">useMemo</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-title function_">computeExpensiveValue</span>(a, b);<br>&#125;, [a, b]);<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="6-useCallback"><a href="#6-useCallback" class="headerlink" title="6. useCallback"></a>6. <code>useCallback</code></h2><p><strong>作用</strong>：缓存函数引用，防止子组件重复渲染。<br><strong>适用场景</strong>：将回调函数传给子组件时。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> handleClick = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;点击事件&#x27;</span>);<br>&#125;, []);<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="7-useReducer"><a href="#7-useReducer" class="headerlink" title="7. useReducer"></a>7. <code>useReducer</code></h2><p><strong>作用</strong>：替代 useState 管理复杂状态。<br><strong>适用场景</strong>：多个相关状态，或状态变更逻辑复杂。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">reducer</span> = (<span class="hljs-params">state, action</span>) =&gt; &#123;<br>  <span class="hljs-keyword">switch</span> (action.<span class="hljs-property">type</span>) &#123;<br>    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;increment&#x27;</span>:<br>      <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">count</span>: state.<span class="hljs-property">count</span> + <span class="hljs-number">1</span> &#125;;<br>    <span class="hljs-attr">default</span>:<br>      <span class="hljs-keyword">return</span> state;<br>  &#125;<br>&#125;;<br><br><span class="hljs-keyword">const</span> [state, dispatch] = <span class="hljs-title function_">useReducer</span>(reducer, &#123; <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> &#125;);<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="8-useLayoutEffect"><a href="#8-useLayoutEffect" class="headerlink" title="8. useLayoutEffect"></a>8. <code>useLayoutEffect</code></h2><p><strong>作用</strong>：同步执行副作用，优先于浏览器绘制。<br><strong>适用场景</strong>：读取 DOM 尺寸或设置样式前。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">useLayoutEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> rect = ref.<span class="hljs-property">current</span>.<span class="hljs-title function_">getBoundingClientRect</span>();<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(rect);<br>&#125;, []);<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="9-useImperativeHandle"><a href="#9-useImperativeHandle" class="headerlink" title="9. useImperativeHandle"></a>9. <code>useImperativeHandle</code></h2><p><strong>作用</strong>：自定义暴露给父组件的 ref 实例值。<br><strong>适用场景</strong>：封装组件并暴露内部方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">useImperativeHandle</span>(ref, <span class="hljs-function">() =&gt;</span> (&#123;<br>  <span class="hljs-attr">focus</span>: <span class="hljs-function">() =&gt;</span> &#123;<br>    inputRef.<span class="hljs-property">current</span>.<span class="hljs-title function_">focus</span>();<br>  &#125;<br>&#125;));<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="10-useId（React-18-）"><a href="#10-useId（React-18-）" class="headerlink" title="10. useId（React 18+）"></a>10. <code>useId</code>（React 18+）</h2><p><strong>作用</strong>：生成唯一 ID，用于无冲突关联表单元素。<br><strong>适用场景</strong>：多个组件实例时避免 ID 冲突。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> id = <span class="hljs-title function_">useId</span>();<br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">htmlFor</span>=<span class="hljs-string">&#123;id&#125;</span>&gt;</span>姓名<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#123;id&#125;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> /&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>如需更多 Hooks 使用示例，请参考官方文档：<a target="_blank" rel="noopener" href="https://reactjs.org/docs/hooks-intro.html">React Hooks</a></p>
 
                 
               </div>
@@ -344,36 +338,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/ruiBlog/categories/%E5%89%8D%E7%AB%AF/" class="category-chain-item">前端</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/ruiBlog/tags/%E5%89%8D%E7%AB%AF/" class="print-no-link">#前端</a>
-      
-        <a href="/ruiBlog/tags/%E5%B8%B8%E7%94%A8%E6%8A%80%E6%9C%AF/" class="print-no-link">#常用技术</a>
-      
-    </div>
   
 </div>
 
@@ -383,8 +347,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>前端开发常用技术</div>
-      <div>https://xuewenrui.github.io/ruiBlog/2025/04/15/web/</div>
+      <div></div>
+      <div>https://xuewenrui.github.io/ruiBlog/2025/04/24/react_hooks_summary/</div>
     </div>
     <div class="license-meta">
       
@@ -396,7 +360,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年4月15日</div>
+          <div>2025年4月24日</div>
         </div>
       
       
@@ -428,9 +392,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/ruiBlog/2025/04/15/react/" title="">
+                      <a href="/ruiBlog/2025/04/24/frontend_common_tech/" title="前端开发常用技术">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">前端开发常用技术</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -438,8 +402,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/ruiBlog/2025/04/09/umierror/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/ruiBlog/2025/04/23/docker_deploy_website/" title="docker应用">
+                        <span class="hidden-mobile">docker应用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
